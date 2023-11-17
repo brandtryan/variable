@@ -1,0 +1,21 @@
+body,
+svg {
+  font-family: 'Amstelvar';
+  background-color: black;
+}
+
+@font-face {
+  font-family: 'Amstelvar';
+  src:
+    url("fonts/Amstelvar-Roman.ttf") format("truetype-variations"),
+    url("fonts/Amstelvar-Italic.ttf") format("truetype-variations");
+}
+
+.letters {
+  display: block;
+  overflow: hidden;
+  justify-content: center;
+  text-align: left;
+  padding: 1%;
+  color: rgb(255, 255, 255);
+}
