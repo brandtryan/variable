@@ -1,5 +1,6 @@
 p5.disableFriendlyErrors = true; // disables FES
 
+
 let font, fontItalic, root, words, txtImport;
 let fvss = ""; // font variable style sheet
 let word = []; // array of divs that contain the letters
@@ -11,7 +12,7 @@ let z = 0;
 function preload() {
   font = loadFont("fonts/Amstelvar-Roman.ttf");
   fontItalic = loadFont("fonts/Amstelvar-Italic.ttf")
-  txtImport = loadStrings("story/dataSingleString.txt");
+  txtImport = loadStrings("story/singleStrPara_01.txt");
 }
 
 
@@ -40,7 +41,6 @@ let fvar = [
 
 function setup() {
   noCanvas();
-  // frameRate(24);
   root = createDiv("");
   root.id("root");
 
