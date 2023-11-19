@@ -40,7 +40,7 @@ let fvar = [
 
 function setup() {
   noCanvas();
-  frameRate(15);
+  // frameRate(24);
   root = createDiv("");
   root.id("root");
 
@@ -82,4 +82,6 @@ function draw() {
     let fw = map(Math.sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
     word[wrd].style("font-variation-settings", `"wght" ${fw}`)
   }
+
+  console.log(frameRate());
 }
