@@ -1,8 +1,8 @@
 p5.disableFriendlyErrors = true; // disables FES
 
-let font, fontItalic, root, words, txtImport;
+let font, fontItalic, root, letters, txtImport;
 let fvss = ""; // font variable style sheet
-let word = []; // array of divs that contain the letters
+let letter = []; // array of divs that contain the letters
 
 let x = 0;
 let y = 0;
@@ -13,8 +13,6 @@ function preload() {
   fontItalic = loadFont("fonts/Amstelvar-Italic.ttf")
   txtImport = loadStrings("story/singleStrPara_01.txt");
 }
-
-
 
 /* the standard font style names, fvar "font variation" table
  "wght"	font-weight
@@ -39,26 +37,21 @@ let fvar = [
 ]
 
 function setup() {
-  noCanvas();
+  const str = (txtImport.toString());
+
+  letters = str.split('');
+
   frameRate(15);
+  noCanvas();
   root = createDiv("");
   root.id("root");
 
-  const str = (txtImport.toString());
-
-  words = str.split(' ');
-
-  // Get index of each word
-  // for (const [index, element] of words.entries()) {
-  //   console.log(index, element);
-  // }
-
-  // create a Div for each word
-  for (let i = 0; i < words.length; i++) {
-    word[i] = createDiv(words[i]);        // create a DIV with one character from txtImport.
-    word[i].parent("root");                // connect it to the root div using ID
-    word[i].class("words");              // set the class to use to create some styling from the css
-    word[i].style("font-size", "20px");   // set default font size to 100px
+  //create a Div for each letter
+  for (let i = 0; i < letters.length; i++) {
+    letter[i] = createDiv(letters[i]);        // create a DIV with one character from txtImport.
+    letter[i].parent("root");                // connect it to the root div using ID
+    letter[i].class("letters");              // set the class to use to create some styling from the css
+    letter[i].style("font-size", "20px");   // set default font size to 100px
   }
 }
 
@@ -69,17 +62,18 @@ function draw() {
   // This is why original text only had 12 letters - one for each of the 12 axis.
   // If you add a 13th character you'll get [character] undefined message, because there isn't a 13th axis!
 
-  // for (const wrd in word) {
-  //   let fw = map(sin(x), -1, 1, fvar[wrd].minValue, fvar[wrd].maxValue);  // minValue  --  defaultValue
-  //   fvss = `"${fvar[wrd].tag}" ${fw}`;
+  // for (const character in letter) {
+  // let fw = map(sin(x), -1, 1, fvar[character].minValue, fvar[character].maxValue);  // minValue  --  defaultValue
+  // fvss = `"${fvar[character].tag}" ${fw}`;
 
-  //   word[wrd].style("font-variation-settings", fvss)
-  // console.log(wrd, fvar[wrd].minValue, fvar[wrd].maxValue)
+  // letter[character].style("font-variation-settings", fvss)
+  // console.log(character, fvar[character].minValue, fvar[character].maxValue)
+  // }
 
   x += Math.random(.05, 2);
 
-  for (const wrd in word) {
+  for (const character in letter) {
     let fw = map(Math.sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
-    word[wrd].style("font-variation-settings", `"wght" ${fw}`)
+    letter[character].style("font-variation-settings", `"wght" ${fw}`)
   }
 }

@@ -28,10 +28,24 @@ svg {
   overflow: hidden;
   justify-content: center;
   text-align: left;
-  padding: 0.4%;
+  padding: .4%;
   color: rgb(255, 255, 255);
 }
 
 .letters:nth-of-type(72) {
+  font-style: italic;
+}
+
+.words {
+  display: inline-block;
+  font-style: normal;
+  overflow: hidden;
+  justify-content: center;
+  text-align: left;
+  padding: .4%;
+  color: rgb(255, 255, 255);
+}
+
+.words:nth-of-type(72) {
   font-style: italic;
 }

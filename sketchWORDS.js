@@ -1,9 +1,8 @@
+p5.disableFriendlyErrors = true; // disables FES
 
-
-let font, fontItalic, root, allText, words;
+let font, fontItalic, root, words, txtImport;
 let fvss = ""; // font variable style sheet
-let letter = []; // array of divs that contain the letters
-let word = []; // array of divs that contain the words
+let word = []; // array of divs that contain the letters
 
 let x = 0;
 let y = 0;
@@ -12,7 +11,7 @@ let z = 0;
 function preload() {
   font = loadFont("fonts/Amstelvar-Roman.ttf");
   fontItalic = loadFont("fonts/Amstelvar-Italic.ttf")
-  allText = loadStrings("dataSingleString.txt");
+  txtImport = loadStrings("story/singleStrPara_01.txt");
 }
 
 
@@ -41,37 +40,25 @@ let fvar = [
 
 function setup() {
   noCanvas();
-  frameRate(30);
+  frameRate(15);
   root = createDiv("");
   root.id("root");
 
-  // const str = (allText.toString());
+  const str = (txtImport.toString());
 
-  // const words = splitTokens(str, " ");
-
-  // // create a Div for each word
-  // for (let i = 0; i < words.length; i++) {
-  //   word[i] = createDiv(words[i]);        // create a DIV with one word from words.
-  //   word[i].parent("root");                // connect it to the root div using ID
-  //   word[i].class("letters");              // set the class to use to create some styling from the css
-  //   word[i].style("font-size", "20px");   // set default font size to 100px
-  // }
+  words = str.split(' ');
 
   // Get index of each word
   // for (const [index, element] of words.entries()) {
   //   console.log(index, element);
   // }
 
-
-
-
-
-  // create a Div for each letter
-  for (let i = 0; i < allText.length; i++) {
-    letter[i] = createDiv(allText[i]);        // create a DIV with one character from allText.
-    letter[i].parent("root");                // connect it to the root div using ID
-    letter[i].class("letters");              // set the class to use to create some styling from the css
-    letter[i].style("font-size", "20px");   // set default font size to 100px
+  // create a Div for each word
+  for (let i = 0; i < words.length; i++) {
+    word[i] = createDiv(words[i]);        // create a DIV with one character from txtImport.
+    word[i].parent("root");                // connect it to the root div using ID
+    word[i].class("words");              // set the class to use to create some styling from the css
+    word[i].style("font-size", "20px");   // set default font size to 100px
   }
 }
 
@@ -82,19 +69,17 @@ function draw() {
   // This is why original text only had 12 letters - one for each of the 12 axis.
   // If you add a 13th character you'll get [character] undefined message, because there isn't a 13th axis!
 
-  // for (const character in letter) {
-  //   let fw = map(sin(x), -1, 1, fvar[character].minValue, fvar[character].maxValue);  // minValue  --  defaultValue
-  //   fvss = `"${fvar[character].tag}" ${fw}`;
+  // for (const wrd in word) {
+  //   let fw = map(sin(x), -1, 1, fvar[wrd].minValue, fvar[wrd].maxValue);  // minValue  --  defaultValue
+  //   fvss = `"${fvar[wrd].tag}" ${fw}`;
 
-  //   letter[character].style("font-variation-settings", fvss)
-  // console.log(character, fvar[character].minValue, fvar[character].maxValue)
-  // }
+  //   word[wrd].style("font-variation-settings", fvss)
+  // console.log(wrd, fvar[wrd].minValue, fvar[wrd].maxValue)
 
-  x += 0.075
+  x += Math.random(.05, 2);
 
   for (const wrd in word) {
-    let fw = map(sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
-    let shake = random(100, 350);
-    word[wrd].style("font-variation-settings", `"wght" ${shake}`)
+    let fw = map(Math.sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
+    word[wrd].style("font-variation-settings", `"wght" ${fw}`)
   }
 }
