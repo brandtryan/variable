@@ -34,8 +34,3 @@ svg {
 .letters:nth-of-type(72) {
   font-style: italic;
 }
-
-.letters:nth-of-type(114):before {
-  content: '/n';
-  display: block;
-}

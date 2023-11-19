@@ -1,21 +1,37 @@
 body,
 svg {
+  display: block;
   font-family: 'Amstelvar';
   background-color: black;
+  padding: 0%;
+  margin: 1%
 }
 
 @font-face {
   font-family: 'Amstelvar';
-  src:
-    url("fonts/Amstelvar-Roman.ttf") format("truetype-variations"),
-    url("fonts/Amstelvar-Italic.ttf") format("truetype-variations");
+  src: url("fonts/Amstelvar-Roman.ttf") format("truetype-variations");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Amstelvar';
+  src: url("fonts/Amstelvar-Italic.ttf") format("truetype-variations");
+  font-weight: normal;
+  font-style: italic;
+
 }
 
 .letters {
-  display: block;
+  display: inline-block;
+  font-style: normal;
   overflow: hidden;
   justify-content: center;
   text-align: left;
-  padding: 1%;
+  padding: 0.4%;
   color: rgb(255, 255, 255);
+}
+
+.letters:nth-of-type(72) {
+  font-style: italic;
 }

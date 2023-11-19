@@ -1,4 +1,4 @@
-let font, fontItalic, root, teText;
+let font, fontItalic, root, letters, teText;
 let fvss = ""; // font variable style sheet
 let letter = []; // array of divs that contain the letters
 
@@ -9,8 +9,10 @@ let z = 0;
 function preload() {
   font = loadFont("fonts/Amstelvar-Roman.ttf");
   fontItalic = loadFont("fonts/Amstelvar-Italic.ttf")
-  teText = loadStrings("fullText.txt");
+  // teText = loadStrings("story/para_01.txt");
 }
+
+teText = "Tourettic";
 
 /* the standard font style names, fvar "font variation" table
  "wght"	font-weight
@@ -35,16 +37,21 @@ let fvar = [
 ]
 
 function setup() {
+  frameRate(15);
   noCanvas();
   root = createDiv("");
   root.id("root");
 
-  // create a Div for each letter
+  // const str = (teText.toString());
+
+  // letters = str.split('');
+
+  //create a Div for each letter
   for (let i = 0; i < teText.length; i++) {
     letter[i] = createDiv(teText[i]);        // create a DIV with one character from teText.
     letter[i].parent("root");                // connect it to the root div using ID
     letter[i].class("letters");              // set the class to use to create some styling from the css
-    letter[i].style("font-size", "40px");   // set default font size to 100px
+    letter[i].style("font-size", "100px");   // set default font size to 100px
   }
 }
 
@@ -55,19 +62,21 @@ function draw() {
   // This is why original text only had 12 letters - one for each of the 12 axis.
   // If you add a 13th character you'll get [character] undefined message, because there isn't a 13th axis!
 
-  // for (const character in letter) {
-  //   let fw = map(sin(x), -1, 1, fvar[character].minValue, fvar[character].maxValue);  // minValue  --  defaultValue
-  //   fvss = `"${fvar[character].tag}" ${fw}`;
-
-  //   letter[character].style("font-variation-settings", fvss)
-  // console.log(character, fvar[character].minValue, fvar[character].maxValue)
-  // }
-
-  x += 0.075
-
   for (const character in letter) {
-    let fw = map(sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
-    let shake = random(100, 110);
-    letter[character].style("font-variation-settings", `"wght" ${shake}`)
+    let fw = map(sin(x), -1, 1, fvar[character].minValue, fvar[character].maxValue);  // minValue  --  defaultValue
+    fvss = `"${fvar[character].tag}" ${fw}`;
+
+    letter[character].style("font-variation-settings", fvss)
+    // console.log(character, fvar[character].minValue, fvar[character].maxValue)
   }
+
+
+  // Shake
+  x += random(.05, 2);
+
+  // for (const character in letter) {
+  //   let fw = map(sin(x), -1, 1, fvar[0].minValue, fvar[0].defaultValue);  // minValue  --  defaultValue
+  //   let shake = random(100, 210);
+  //   letter[character].style("font-variation-settings", `"wght" ${fw}`)
+  // }
 }
