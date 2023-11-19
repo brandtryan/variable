@@ -11,7 +11,7 @@ let z = 0;
 function preload() {
   font = loadFont("fonts/Amstelvar-Roman.ttf");
   fontItalic = loadFont("fonts/Amstelvar-Italic.ttf")
-  txtImport = loadStrings("story/singleStrPara_01.txt");
+  txtImport = loadStrings("story/dataSingleString.txt");
 }
 
 
