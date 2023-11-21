@@ -21,7 +21,7 @@ svg {
   font-style: italic;
 }
 
-.words {
+.letters {
   display: inline-block;
   font-style: normal;
   overflow: hidden;
@@ -32,7 +32,7 @@ svg {
 }
 
 /* Add more by adding additional :nth-of-type() before brackets (requires commas)*/
-.words:nth-of-type(72),
+.letters:nth-of-type(72),
 :nth-of-type(73) {
   font-style: italic;
 }
